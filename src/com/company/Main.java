@@ -22,11 +22,6 @@ public class Main {
                 System.out.println("Exiting...");
                 System.exit(0);
             }
-
-            // print another line
-            if(cmds[0].equals("\n")){
-
-            }
         }
 
         // TESTING

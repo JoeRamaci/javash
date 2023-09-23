@@ -1,0 +1,7 @@
+Main:
+    - runtime loop
+        - Scanner input
+            - read inputted text, split words on spaces
+            - if word matches to command, run command?
+            - figure out pipes here, or make them a command? probably make command
+        - read exit command here, and quit CLI if exit entered

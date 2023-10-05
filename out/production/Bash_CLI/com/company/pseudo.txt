@@ -5,3 +5,15 @@ Main:
             - if word matches to command, run command?
             - figure out pipes here, or make them a command? probably make command
         - read exit command here, and quit CLI if exit entered
+
+
+
+cat:
+    - parameter = array of CLI input
+    - for files:
+        - Create a file object using param
+        - Scanner to read f
+        - while scanner on f
+            - append to a big str
+    - return big str
+0 1 2 3 4

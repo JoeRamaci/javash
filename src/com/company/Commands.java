@@ -8,14 +8,14 @@ import java.util.Scanner;
 import java.util.Queue;
 
 public class Commands {
-    private String[] cmdWithArgs;
+    private String[] cmdsPlusArgs;
     private Queue<String> hist = new LinkedList<>();
 
-    // TODO: hist operations in constructor or in matcher() success cases? Do I even need cmdWithArgs?
-    public Commands(){}
-//    String[] cmdWithArgs) {
+    // TODO: hist operations in constructor. Constructor will be called outside while loop
+    public Commands(String[] cmds){}
+        this.cmds = cmdsPlusArgs;
 //        this.cmdWithArgs = cmdWithArgs; // set parameter to class var
-//        hist.add(cmdWithArgs[]);         // add command and arguments to history queue
+        hist.add(cmds[]);         // add command and arguments to history queue
 
 
         /**
@@ -30,23 +30,35 @@ public class Commands {
         switch (cmds[0]) {
             case "cat":
                 try {
+                    System.out.println("SWITCH 1");
                     String catted = cat(cmds);
-                    System.out.println(catted);
+                    System.out.println("SWITCH 2");
+//                    System.out.println(catted);
+                    return catted;
+//                    System.out.println("SWITCH 3");
                 } catch (FileNotFoundException e) {
                     System.out.println("Usage: cat [TARGET FILE]. File does not exist in directory.");
                 }
                 break;
 
             case "pwd":
-                System.out.println(pwd());
-                break;
+//                System.out.println(pwd());
+                return pwd();
+//                break;
 
             case "history":
                 hist.addAll(Arrays.asList(cmds));
                 hist.forEach(System.out::println);
                 break;
+            default:
+                return "Invalid command.";
         }
+//        TODO: bypass a return here? or make it return nothing to stdout?
         return null;
+    }
+
+    public void cd(){
+        System.setProperty("user.dir", cmds[1]);
     }
 
     /**
@@ -62,16 +74,21 @@ public class Commands {
      *
      * @param files Array of files to be printed. Files should be in indices files[1] and higher.
      */
+    // TODO: why tf doesnt it work? is it in cat()? matcher()? main? wtf???
     public static String cat(String[] files) throws FileNotFoundException {
         // TODO: get relative path to desired file, add it to string provided for target file, pass to fRead
         // TODO: make it read multiple files and separate them by names
         String text = "";
         try {
             for(int i = 1; i < files.length - 1; i++){  // .len - 1; avoid OutOfBounds
+                System.out.println("1" + i);
                 File f = new File(files[i]);    // make object for file
+                System.out.println("2" + i);
                 Scanner fReader = new Scanner(f);   // pass file object to Scanner so it is read
+                System.out.println("3" + i);
                 while (fReader.hasNextLine()) {
-                    text = text + (fReader.nextLine());
+                    System.out.println("WHILE" + i + fReader.nextLine());
+                    text = text + fReader.nextLine();
                 }
             }
             return text;

@@ -6,7 +6,11 @@ Main:
             - figure out pipes here, or make them a command? probably make command
         - read exit command here, and quit CLI if exit entered
 
-
+Commands.java:
+    - private history queue
+    - private cmds+args[]
+    - Commands constructor(cmds[]):
+        - add cmds to history
 
 cat:
     - parameter = array of CLI input

@@ -18,13 +18,17 @@ public class Main {
             String[] cmds = input.split(" ");
 
             // print another cursor
-            if(cmds[0].equals(" ")){
-                continue;
-            }
+//            if(cmds[0].equals("\n")){
+//                continue;
+//            }
 
             // cmdMatcher handles CLI logic
             Commands cmdMatcher = new Commands();
-            cmdMatcher.matcher(cmds);
+            if (cmdMatcher.matcher(cmds) == null){
+                continue;
+            } else {
+                System.out.println(cmdMatcher.matcher(cmds));
+            }
 
             // exit
             if(cmds[0].equals("exit")){
@@ -40,5 +44,11 @@ public class Main {
 //        for(String s: cmds){
 //            System.out.println(s);
 //        }
+        String[] t = {"cat", "Bash_CLI/src/com/company/foo.txt"};
+        try {
+            System.out.println(Commands.cat(t));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
